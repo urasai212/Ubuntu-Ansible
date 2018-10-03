@@ -1,0 +1,23 @@
+
+---
+ - hosts: localhost
+   become: yes
+   become_method: sudo
+   tasks:
+
+   - name: Adding new user to system
+     user:
+       name: testuser
+       uid: 1040
+       state: present
+
+   - name: Set timezone to Asia/Kolkata.
+     timezone:
+       name: Asia/Kolkata
+
+   - name: Insatlling python packages.
+     yum: pkg={{item}} state=present
+     with_items:
+       - python3
+       - pip3
+___________________________________________
